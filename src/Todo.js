@@ -9,7 +9,7 @@ class Todo extends React.Component {
     _handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             const todo = e.target.value;
-            this.props.addTodo(this.props.todoList, todo)
+            this.props.addTodo(todo)
             this.setState({
                 value: ""
             })
