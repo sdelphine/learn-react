@@ -24,14 +24,11 @@ class Todo extends React.Component {
     render() {
         return (
           <section>
-            <input className="toggle-all" type="checkbox">
-                {/* <label for="toggle-all">Mark all as completed</label> */}
-            </input>
             <input
                 className="new-todo"
                 placeholder="What needs to be done?"
                 type="text"
-                autofocus=""
+                autoFocus=""
                 name="todo"
                 onKeyDown={this._handleKeyDown}
                 value={this.state.value} 

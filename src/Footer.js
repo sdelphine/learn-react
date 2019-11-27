@@ -1,17 +1,16 @@
 import React from "react"
 
 class Footer extends React.Component {
-    // style display: none instead of display if lenght item is 0
-    // style="display: block;
-
     _removeKey = (e) => {
         this.props.clearCompleted()
     }
 
     render() {
         return(
-            <footer className="footer">
-                <span className="todo-count">{this.props.countLeft} items left</span>
+            <footer className="footer" style={{display: this.props.display}}>
+                <span className="todo-count">
+                    {this.props.countLeft} {this.props.countLeft === 1 ? "item left" : "items left"}
+                </span>
                 <ul className="filters">
                     <li>
                         <a href="#/">All</a>
@@ -23,7 +22,7 @@ class Footer extends React.Component {
                         <a href="#/completed">Completed</a>
                     </li>
                 </ul>
-        <button className="clear-completed" onClick={this._removeKey}>Clear completed</button>
+                <button className="clear-completed" onClick={this._removeKey}>Clear completed</button>
             </footer>
         )
     }
