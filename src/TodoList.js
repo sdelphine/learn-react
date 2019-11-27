@@ -7,19 +7,27 @@ class TodoList extends React.Component {
     }
 
     _handleCheckbox(e) {
-        const name = e.target.value
-        const checked = e.target.checked
-        console.log(checked)
+        // Put to parent
+        this.props.isCompleted(e.target.value, e.target.checked)
     }
+
     render () {
+        // TODO
+        // And Add a class="completed" in li
         return(
             <ul className="todo-list">
                  {
                      this.props.todoList.map((todo) => (
-                         <li key={todo.id}>
-                             <input className="toggle" type="checkbox" value={todo.id} onChange={this._handleCheckbox}></input>
+                         <li key={todo.id} className={(todo.completed ? "completed" : "")}>
+                            <input
+                                className="toggle"
+                                type="checkbox"
+                                value={todo.id}
+                                onChange={this._handleCheckbox.bind(this)}
+                                >
+                                </input>
+                             <label>{todo.value}</label>
                              {/* <input class="edit" value={this.props.todoList[id].value}></input> */}
-                             <label>{todo.value}</label> 
                              <button className="destroy" onClick={() => this._removeKey(todo.id)}></button>
                          </li>
                      ))

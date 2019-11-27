@@ -10,6 +10,7 @@ class Todo extends React.Component {
         if (e.key === 'Enter') {
             const todo = e.target.value;
             this.props.addTodo(todo)
+            // clear input field
             this.setState({
                 value: ""
             })
@@ -22,16 +23,22 @@ class Todo extends React.Component {
 
     render() {
         return (
-          <input
-            className="new-todo"
-            placeholder="What needs to be done?"
-            type="text"
-            name="todo"
-            onKeyDown={this._handleKeyDown}
-            value={this.state.value} 
-            onChange={this.handleChange.bind(this)}
-            >
+          <section>
+            <input className="toggle-all" type="checkbox">
+                {/* <label for="toggle-all">Mark all as completed</label> */}
             </input>
+            <input
+                className="new-todo"
+                placeholder="What needs to be done?"
+                type="text"
+                autofocus=""
+                name="todo"
+                onKeyDown={this._handleKeyDown}
+                value={this.state.value} 
+                onChange={this.handleChange.bind(this)}
+                >
+                </input>
+          </section>
         )
     }
 }
