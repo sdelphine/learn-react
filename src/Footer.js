@@ -9,7 +9,7 @@ class Footer extends React.Component {
         return(
             <footer className="footer" style={{display: this.props.display}}>
                 <span className="todo-count">
-                    {this.props.countLeft} {this.props.countLeft === 1 ? "item left" : "items left"}
+                    {this.props.remainingTodo} {this.props.remainingTodo === 1 ? "item left" : "items left"}
                 </span>
                 <ul className="filters">
                     <li>

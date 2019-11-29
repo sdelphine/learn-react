@@ -7,7 +7,7 @@ class Todo extends React.Component {
     }
     
     _handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' & e.target.value.length > 0) {
             const todo = e.target.value;
             this.props.addTodo(todo)
             // clear input field

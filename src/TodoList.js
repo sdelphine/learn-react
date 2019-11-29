@@ -1,35 +1,30 @@
 import React from "react";
+import TodoListItem from './TodoListItem';
 
-class TodoList extends React.Component {
-    
+class TodoList extends React.Component {   
     _removeKey = (id) => {
         this.props.handleDelete(id)
     }
 
-    _handleCheckbox(e) {
+    _handleCheckbox(value, checked) {
         // Put to parent
-        this.props.isCompleted(e.target.value, e.target.checked)
+        this.props.isCompleted(value, checked)
     }
 
+    _manageChange(id, value) {
+        this.props.manageChange(id, value)
+    }
     render () {
         return(
             <ul className="todo-list">
                 {
                     this.props.todoList.map((todo) => (
-                        <li key={todo.id} className={(todo.completed ? "completed" : "")}>
-                        <input
-                            className="toggle"
-                            type="checkbox"
-                            value={todo.id}
-                            checked={todo.completed}
-                            onChange={this._handleCheckbox.bind(this)}
-                            >
-                            </input>
-                            <label>{todo.value}</label>
-                            {/* TODO Edit function*/}
-                            {/* <input class="edit" value={this.props.todoList[id].value}></input> */}
-                            <button className="destroy" onClick={() => this._removeKey(todo.id)}></button>
-                        </li>
+                        <TodoListItem
+                         key={todo.id}
+                         todo={todo}
+                         isCompleted={this._handleCheckbox.bind(this)}
+                         handleDelete={this._removeKey.bind(this)}
+                         manageChange={this._manageChange.bind(this)}/>
                     ))
                 }
             </ul>
