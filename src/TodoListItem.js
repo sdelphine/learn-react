@@ -48,7 +48,7 @@ class TodoListItem extends React.Component {
                 edit: false
             })
         }
-        if(event.keyCode === ) {
+        if(event.keyCode === 27) {
             this.setState({
                 edit: false,
                 value: this.state.prevValue
