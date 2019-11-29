@@ -7,7 +7,8 @@ class TodoListItem extends React.Component {
         super(props)
         this.state = {
             edit: false,
-            value: props.todo.value
+            value: props.todo.value,
+            prevValue: ""
         }
     }
     _removeKey = (id) => {
@@ -21,7 +22,8 @@ class TodoListItem extends React.Component {
     
     _editTodo(e) {
         this.setState({
-            edit: true
+            edit: true,
+            prevValue: this.state.value
         })
     }
 
@@ -38,6 +40,22 @@ class TodoListItem extends React.Component {
             })
         }
     }
+
+    _onKeyPress = event => {
+        console.log(event.key)
+        if(event.key === "Enter") {
+            this.setState({
+                edit: false
+            })
+        }
+        if(event.keyCode === ) {
+            this.setState({
+                edit: false,
+                value: this.state.prevValue
+            })
+        }
+    }
+
     _manageChange = event => {
         this.setState({
             value: event.target.value
@@ -58,7 +76,8 @@ class TodoListItem extends React.Component {
                             className="edit"
                             defaultValue={this.props.todo.value}
                             onClick={this.handleClickOutside}
-                            onChange={this._manageChange}
+                            onChange={this._manageChange.bind(this)}
+                            onKeyPress={this._onKeyPress}
                             value={this.state.value}
                         ></input>
                     </div>
