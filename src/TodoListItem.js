@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { cpus } from 'os';
+// import { cpus } from 'os';
 
 class TodoListItem extends React.Component {
     constructor(props) {

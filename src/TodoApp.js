@@ -8,15 +8,26 @@ function randomId() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 }
 
+const todos = [
+  {id: randomId(), value: 'add select mode using router (ongoing)', completed: true},
+  {id: randomId(), value: 'close edit todo with esc', completed: false},
+  {id: randomId(), value: 'edit completed todo', completed: false}
+];
+
 class TodoApp extends React.Component {
   constructor(props) {
       super(props);
+      let todosToDisplay = [...todos];
+      if (this.props.view === "active") {
+        todosToDisplay = todosToDisplay.filter(todo => todo.completed === false)
+      }
+      if (this.props.view === "completed") {
+        todosToDisplay = todosToDisplay.filter(todo => todo.completed === true)
+      }
+      //Don't work
       this.state = {
-        todoList: [
-          {id: randomId(), value: 'add select mode using router', completed: false},
-          {id: randomId(), value: 'close edit todo with esc', completed: false}
-        ],
-        remainingTodo: 2,
+        todoList: todosToDisplay,
+        remainingTodo: todosToDisplay.length,
         toggleAll: false
       }
     }
@@ -148,8 +159,8 @@ class TodoApp extends React.Component {
           <Footer
            display={this.state.todoList.length > 0 ? "block" : "none"}
            remainingTodo={this.state.remainingTodo}
-           clearCompleted={this.clearCompleted.bind(this)
-          }
+           clearCompleted={this.clearCompleted.bind(this)}
+           view={this.props.view}
           />
         </section>
       </section>
