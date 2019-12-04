@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 class Footer extends React.Component {
     _removeKey = (e) => {
-        this.props.clearCompleted()
+        this.props.clearCompleted();
     }
 
     render() {
